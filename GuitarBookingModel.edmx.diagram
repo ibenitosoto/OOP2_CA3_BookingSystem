@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15fb80b45efa4a6bae69c07e7c8cabfb" Name="Diagram1" >
+        <EntityTypeShape EntityType="GuitarBookingModel.Guitar" Width="1.5" PointX="9.75" PointY="4.125" />
+        <EntityTypeShape EntityType="GuitarBookingModel.Booking" Width="1.5" PointX="13.25" PointY="4.125" />
+        <AssociationConnector Association="GuitarBookingModel.GuitarBooking" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
