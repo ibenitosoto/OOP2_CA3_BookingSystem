@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\isoto\OneDrive - Institute of Technology Sligo\OOSD2 - Ignacio Benito\Week 13 - Assessments - CA3\CA3_s00220273\GuitarBookingModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\isoto\OneDrive - Institute of Technology Sligo\OOSD2 - Ignacio Benito\Week 13 - Assessments - CA3\CA3_s00220273\GuitarsAndBookingsModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

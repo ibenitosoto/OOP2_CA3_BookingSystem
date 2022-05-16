@@ -24,5 +24,15 @@ namespace CA3_s00220273
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GuitarsAndBookingsEntities db = new GuitarsAndBookingsEntities();
+
+            var query = from g in db.Guitars
+                        select g.Model;
+
+            lbx1.ItemsSource = query.ToList();
+        }
     }
 }

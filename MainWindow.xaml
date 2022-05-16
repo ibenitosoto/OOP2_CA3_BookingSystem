@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CA3_s00220273"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="Window_Loaded"
+        >
     <Grid>
-        
+        <ListBox x:Name="lbx1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="170,52,210,100"/>
+
     </Grid>
 </Window>

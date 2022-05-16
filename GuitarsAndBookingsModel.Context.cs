@@ -13,10 +13,10 @@ namespace CA3_s00220273
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GuitarBookingModelContainer : DbContext
+    public partial class GuitarsAndBookingsEntities : DbContext
     {
-        public GuitarBookingModelContainer()
-            : base("name=GuitarBookingModelContainer")
+        public GuitarsAndBookingsEntities()
+            : base("name=GuitarsAndBookingsEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace CA3_s00220273
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Guitar> Guitars { get; set; }
         public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Guitar> Guitars { get; set; }
     }
 }
