@@ -30,7 +30,7 @@ GO
 -- Creating table 'Guitars'
 CREATE TABLE [dbo].[Guitars] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Make] nvarchar(max)  NOT NULL,
+    [Brand] nvarchar(max)  NOT NULL,
     [Model] nvarchar(max)  NOT NULL,
     [Color] nvarchar(max)  NOT NULL
 );

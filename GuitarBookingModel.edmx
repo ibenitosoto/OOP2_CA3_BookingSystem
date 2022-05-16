@@ -18,7 +18,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Make" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -60,7 +60,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Make" Type="String" Nullable="false" />
+          <Property Name="Brand" Type="String" Nullable="false" />
           <Property Name="Model" Type="String" Nullable="false" />
           <Property Name="Color" Type="String" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="GuitarBookingModel.GuitarBooking" FromRole="Guitar" ToRole="Booking" />
@@ -97,7 +97,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(GuitarBookingModel.Guitar)">
         <MappingFragment StoreEntitySet="Guitars">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="Color" ColumnName="Color" />
         </MappingFragment>
