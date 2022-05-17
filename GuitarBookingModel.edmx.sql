@@ -32,7 +32,7 @@ CREATE TABLE [dbo].[Guitars] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Brand] nvarchar(max)  NOT NULL,
     [Model] nvarchar(max)  NOT NULL,
-    [Color] nvarchar(max)  NOT NULL
+    [StringSize] nvarchar(max)  NOT NULL
 );
 GO
 

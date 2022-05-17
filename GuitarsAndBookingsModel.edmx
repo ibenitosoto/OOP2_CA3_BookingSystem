@@ -21,7 +21,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StringSize" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_GuitarBooking">
           <End Role="Guitars" Type="Self.Guitars" Multiplicity="1" />
@@ -65,7 +65,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StringSize" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_GuitarBooking" FromRole="Guitars" ToRole="Bookings" />
         </EntityType>
         <Association Name="FK_GuitarBooking">
@@ -110,7 +110,7 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Brand" ColumnName="Brand" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="StringSize" ColumnName="StringSize" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

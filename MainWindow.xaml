@@ -8,8 +8,59 @@
         Title="MainWindow" Height="450" Width="800"
         Loaded="Window_Loaded"
         >
-    <Grid>
-        <ListBox x:Name="lbx1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="170,52,210,100"/>
 
-    </Grid>
+    <TabControl>
+        <TabItem Header="Main" Width="70">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <ListBox Grid.Column="0" x:Name="listBoxAvailable" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,266,30,30"/>
+
+                <ComboBox x:Name="dropdownBrand" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top" Width="104" SelectionChanged="dropdownColor_SelectionChanged"/>
+                <DatePicker x:Name="datePickerStart" HorizontalAlignment="Left" Margin="135,101,0,0" VerticalAlignment="Top"/>
+                <DatePicker x:Name="datePickerEnd" HorizontalAlignment="Left" Margin="135,153,0,0" VerticalAlignment="Top"/>
+                <Button Content="Search" HorizontalAlignment="Left" Margin="151,0,0,0" VerticalAlignment="Center" Width="86"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,105,0,0" TextWrapping="Wrap" Text="StartDate" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,157,0,0" TextWrapping="Wrap" Text="EndDate" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,53,0,0" TextWrapping="Wrap" Text="String Size" VerticalAlignment="Top"/>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Guitars" Width="70">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="buttonGetAllGuitars" Grid.Row="0" Content="Get all guitars" HorizontalAlignment="Left" Margin="335,5,0,0" VerticalAlignment="Top" Width="117" Click="buttonGetAllGuitars_Click"/>
+                <DataGrid Grid.Row="1" x:Name="datagridGuitars" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                
+            </Grid>
+
+        </TabItem>
+
+        <TabItem Header="Bookings" Width="70">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="buttonGetAllBookings" Grid.Row="0" Content="Get all bookings" HorizontalAlignment="Left" Margin="335,5,0,0" VerticalAlignment="Top" Width="117" Click="buttonGetAllBookings_Click"/>
+                <DataGrid Grid.Row="1" x:Name="datagridBookings" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
+            </Grid>
+        </TabItem>
+
+
+
+
+    </TabControl>
+
 </Window>

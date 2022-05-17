@@ -23,7 +23,7 @@ namespace CA3_s00220273
         public int Id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
-        public string Color { get; set; }
+        public string StringSize { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
