@@ -18,15 +18,18 @@
                 </Grid.ColumnDefinitions>
 
 
-                <ListBox Grid.Column="0" x:Name="listBoxAvailable" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,266,30,30"/>
+                <ListBox Grid.Column="0" x:Name="listBoxAvailable" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,266,30,30" SelectionChanged="listBoxAvailable_SelectionChanged"/>
 
-                <ComboBox x:Name="dropdownBrand" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top" Width="104" SelectionChanged="dropdownColor_SelectionChanged"/>
-                <DatePicker x:Name="datePickerStart" HorizontalAlignment="Left" Margin="135,101,0,0" VerticalAlignment="Top"/>
-                <DatePicker x:Name="datePickerEnd" HorizontalAlignment="Left" Margin="135,153,0,0" VerticalAlignment="Top"/>
-                <Button Content="Search" HorizontalAlignment="Left" Margin="151,0,0,0" VerticalAlignment="Center" Width="86"/>
+                <ComboBox x:Name="dropdownStringSize" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top" Width="104" SelectionChanged="dropdownStringSize_SelectionChanged"/>
+                <DatePicker x:Name="datePickerStart" HorizontalAlignment="Left" Margin="135,101,0,0" VerticalAlignment="Top" SelectedDateChanged="datePickerStart_SelectedDateChanged"/>
+                <DatePicker x:Name="datePickerEnd" HorizontalAlignment="Left" Margin="135,153,0,0" VerticalAlignment="Top" SelectedDateChanged="datePickerEnd_SelectedDateChanged"/>
+                <Button x:Name="buttonSearch" Content="Search" HorizontalAlignment="Left" Margin="149,211,0,0" VerticalAlignment="Top" Width="86" Click="buttonSearch_Click" IsEnabled="False"/>
                 <TextBlock HorizontalAlignment="Left" Margin="30,105,0,0" TextWrapping="Wrap" Text="StartDate" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="30,157,0,0" TextWrapping="Wrap" Text="EndDate" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="30,53,0,0" TextWrapping="Wrap" Text="String Size" VerticalAlignment="Top"/>
+                <Button x:Name="buttonBook" Grid.Column="1" Content="Book" Margin="225,321,225,65" Click="buttonBook_Click" IsEnabled="False"/>
+                <Image x:Name="imageSelectedGuitar" Grid.Column="1" Height="220" Margin="0,0,125,162" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="272"/>
+                <TextBlock x:Name="textblockDateError" HorizontalAlignment="Center" Margin="0,246,0,0" TextWrapping="Wrap" Text="Start date cannot be later than end date" VerticalAlignment="Top" Height="15" Width="205" FontSize="10" Foreground="#FFD21B1B" Visibility="Hidden"/>
 
             </Grid>
         </TabItem>
@@ -40,7 +43,7 @@
 
                 <Button x:Name="buttonGetAllGuitars" Grid.Row="0" Content="Get all guitars" HorizontalAlignment="Left" Margin="335,5,0,0" VerticalAlignment="Top" Width="117" Click="buttonGetAllGuitars_Click"/>
                 <DataGrid Grid.Row="1" x:Name="datagridGuitars" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-                
+
             </Grid>
 
         </TabItem>
