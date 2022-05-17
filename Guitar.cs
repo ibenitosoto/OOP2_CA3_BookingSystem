@@ -27,5 +27,10 @@ namespace CA3_s00220273
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
+
+        public override string ToString()
+        {
+            return this.Brand + " " + this.Model + " " + this.StringSize;
+        }
     }
 }

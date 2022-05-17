@@ -23,7 +23,7 @@ namespace CA3_s00220273
     {
         GuitarsAndBookingsEntities db = new GuitarsAndBookingsEntities();
 
-        ObservableCollection<Guitar> availableGuitars = new ObservableCollection<Guitar>();
+        //ObservableCollection<Guitar> availableGuitars = new ObservableCollection<Guitar>();
 
         public MainWindow()
         {
@@ -37,12 +37,9 @@ namespace CA3_s00220273
             var query = from g in db.Guitars
                         select g.StringSize;
 
-            dropdownStringSize.ItemsSource = query.ToList();
-            listBoxAvailable.ItemsSource = availableGuitars;
+            dropdownStringSize.ItemsSource = query.ToList().Distinct();
+            //listBoxAvailable.ItemsSource = availableGuitars;
         }
-
-
-
 
 
         //store selected StringSize from dropdown and enable search button if other inputs are filled
@@ -120,6 +117,14 @@ namespace CA3_s00220273
         //feed available listbox with available guitars
 
 
+
+
+
+
+
+
+
+
         //guitars tab with all guitar models available
         public void buttonGetAllGuitars_Click(object sender, RoutedEventArgs e)
         {
@@ -138,16 +143,7 @@ namespace CA3_s00220273
             datagridBookings.ItemsSource = query.ToList();
         }
 
-        private void buttonSearch_Click(object sender, RoutedEventArgs e)
-        {
-            //var query = from g in db.Guitars
-            //            select g.Brand + " " + g.Model;
-
-            //listBoxAvailable.ItemsSource = query.ToList();
-
-    
-
-        }
+ 
 
 
         //display guitar image when a model is selected in the available listbox
@@ -237,6 +233,29 @@ namespace CA3_s00220273
             }
         }
 
- 
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            //var query = from g in db.Guitars
+            //            select g.Brand + " " + g.Model;
+
+            //listBoxAvailable.ItemsSource = query.ToList();
+
+            string selectedStringSize = dropdownStringSize.SelectedItem.ToString();
+
+            var query = from g in db.Guitars
+                        //join g in db.Guitars on b.GuitarId equals g.Id
+                        where g.StringSize.Equals(selectedStringSize)
+                        select new
+                        {
+                            g.Brand,
+                            g.Model,
+                            g.StringSize
+                        };
+
+            listBoxAvailable.ItemsSource = query.ToList();
+
+        }
+
+
     }
 }
