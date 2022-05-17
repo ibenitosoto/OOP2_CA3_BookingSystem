@@ -241,15 +241,27 @@ namespace CA3_s00220273
             //listBoxAvailable.ItemsSource = query.ToList();
 
             string selectedStringSize = dropdownStringSize.SelectedItem.ToString();
+            DateTime? startDate = datePickerStart.SelectedDate;
+            DateTime? endDate = datePickerEnd.SelectedDate;
 
-            var query = from g in db.Guitars
-                        //join g in db.Guitars on b.GuitarId equals g.Id
-                        where g.StringSize.Equals(selectedStringSize)
+            //var query = from g in db.Guitars
+            //            where g.StringSize.Equals(selectedStringSize)
+            //            select new
+            //            {
+            //                g.Brand,
+            //                g.Model,
+            //                g.StringSize
+            //            };
+
+            var query = from b in db.Bookings
+                        where b.Guitar.StringSize.Equals(selectedStringSize)
+                        && (startDate > b.EndDate || startDate < b.StartDate)
+                        && (endDate > b.EndDate || endDate < b.StartDate)
                         select new
                         {
-                            g.Brand,
-                            g.Model,
-                            g.StringSize
+                            b.Guitar.Brand,
+                            b.Guitar.Model,
+                            b.Guitar.StringSize
                         };
 
             listBoxAvailable.ItemsSource = query.ToList();

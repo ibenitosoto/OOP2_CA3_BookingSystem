@@ -30,7 +30,7 @@ namespace CA3_s00220273
 
         public override string ToString()
         {
-            return this.Brand + " " + this.Model + " " + this.StringSize;
+            return string.Format($"{Brand} {Model} with {StringSize} strings");
         }
     }
 }
