@@ -23,7 +23,7 @@ namespace CA3_s00220273
     {
         GuitarsAndBookingsEntities db = new GuitarsAndBookingsEntities();
 
-        //ObservableCollection<Guitar> availableGuitars = new ObservableCollection<Guitar>();
+        ObservableCollection<Guitar> availableGuitars = new ObservableCollection<Guitar>();
 
         public MainWindow()
         {
@@ -146,17 +146,9 @@ namespace CA3_s00220273
  
 
 
-        //display guitar image when a model is selected in the available listbox
-        private void listBoxAvailable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
-        //make the booking if selected guitar is available at that date
-        private void buttonBook_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
 
         //method to check if dropdown has any value selected
@@ -207,6 +199,7 @@ namespace CA3_s00220273
             }
         }
 
+        //method to check if all inputs are filled
         public bool AreAllInputsFilled()
         {
             if (IsDropdownSelected() && IsStartDateFilled() && IsEndDateFilled())
@@ -220,6 +213,7 @@ namespace CA3_s00220273
             }
         }
 
+        //method to check if selected start date is later than selected end date
         public bool IsStartDateEarlierThanEndDate()
         {
             if (datePickerStart.SelectedDate < datePickerEnd.SelectedDate)
@@ -233,6 +227,7 @@ namespace CA3_s00220273
             }
         }
 
+        //click event handler method to query the database for available guitars to book in selected date range
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
         {
             //var query = from g in db.Guitars
@@ -240,9 +235,6 @@ namespace CA3_s00220273
 
             //listBoxAvailable.ItemsSource = query.ToList();
 
-            string selectedStringSize = dropdownStringSize.SelectedItem.ToString();
-            DateTime? startDate = datePickerStart.SelectedDate;
-            DateTime? endDate = datePickerEnd.SelectedDate;
 
             //var query = from g in db.Guitars
             //            where g.StringSize.Equals(selectedStringSize)
@@ -253,20 +245,84 @@ namespace CA3_s00220273
             //                g.StringSize
             //            };
 
+            //storing input values
+            string selectedStringSize = dropdownStringSize.SelectedItem.ToString();
+            DateTime? startDate = datePickerStart.SelectedDate;
+            DateTime? endDate = datePickerEnd.SelectedDate;
+
+            //querying the database
             var query = from b in db.Bookings
                         where b.Guitar.StringSize.Equals(selectedStringSize)
                         && (startDate > b.EndDate || startDate < b.StartDate)
                         && (endDate > b.EndDate || endDate < b.StartDate)
+
                         select new
                         {
                             b.Guitar.Brand,
                             b.Guitar.Model,
                             b.Guitar.StringSize
                         };
-
+            
             listBoxAvailable.ItemsSource = query.ToList();
 
+            //select new Guitar
+            //            {
+            //                Id = b.GuitarId,
+            //                Brand = b.Guitar.Brand,
+            //                Model = b.Guitar.Model,
+            //                StringSize = b.Guitar.StringSize
+            //            };
+
+
+            ////updating listbox with available guitars        
+            //listBoxAvailable.ItemsSource = availableGuitars;
+
+            //foreach (Guitar guitarObj in query)
+            //{
+            //    availableGuitars.Add(guitarObj);
+            //}
+
         }
+
+
+        //event handler method to react to selected guitars in the listbox
+        private void listBoxAvailable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //displaying image of selected guitar
+
+            //enabling booking button
+            buttonBook.IsEnabled = true;
+
+            Guitar selectedGuitar = listBoxAvailable.SelectedItem as Guitar;
+
+        }
+
+
+        //make the booking if selected guitar is available at that date
+        private void buttonBook_Click(object sender, RoutedEventArgs e)
+        {
+            Guitar selectedGuitar = listBoxAvailable.SelectedItem as Guitar;
+            string selectedStringSize = dropdownStringSize.SelectedItem.ToString();
+            DateTime startDate = (DateTime)datePickerStart.SelectedDate;
+            DateTime endDate = (DateTime)datePickerEnd.SelectedDate;
+
+            Booking b = new Booking()
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                GuitarId = selectedGuitar.Id
+            };
+
+            db.Bookings.Add(b);
+            db.SaveChanges();
+        }
+
+
+
+
+
+
+
 
 
     }
