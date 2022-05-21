@@ -32,8 +32,8 @@
                 <Image x:Name="imageSelectedGuitar" Grid.Column="1" Height="341" Margin="0,0,61,109" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="336"/>
                 <TextBlock x:Name="textblockDateError" HorizontalAlignment="Center" Margin="0,246,0,0" TextWrapping="Wrap" Text="Start date cannot be later than end date" VerticalAlignment="Top" Height="15" Width="205" FontSize="10" Foreground="#FFD21B1B" Visibility="Hidden"/>
                 <TextBlock x:Name="textblockTitle" Grid.Column="1" HorizontalAlignment="Center" Margin="0,23,0,0" TextWrapping="Wrap" Text="Rock N Roll Guitar Rentals" VerticalAlignment="Top" FontSize="24" FontFamily="Stencil"/>
-                <TextBlock x:Name="textblockWelcome" Grid.Column="1" HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" Text="Welcome to Rock N Roll Guitar Rentals. Fill required information and select an available guitar in order to make a booking" VerticalAlignment="Top" TextAlignment="Center"/>
-                <TextBlock x:Name="textblockSelectedGuitar" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,67" TextWrapping="Wrap" Text="TextBlock" FontSize="14" Visibility="Hidden" Height="19" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="textblockWelcome" Grid.Column="1" HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" Text="Welcome to Rock N Roll Guitar Rentals. Fill required information and select an available guitar in order to make a booking" VerticalAlignment="Top" TextAlignment="Center" Width="350"/>
+                <TextBlock x:Name="textblockSelectedGuitar" Grid.Column="1" Margin="50,465,50,0" TextWrapping="Wrap" Text="TextBlock" Visibility="Hidden" Height="19" VerticalAlignment="Top" Foreground="#FF8AEA16" HorizontalAlignment="Center" TextAlignment="Center" FontStretch="Condensed"/>
 
             </Grid>
         </TabItem>
