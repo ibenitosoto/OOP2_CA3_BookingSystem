@@ -23,7 +23,7 @@ namespace CA3_s00220273
     {
         GuitarsAndBookingsEntities db = new GuitarsAndBookingsEntities();
 
-        ObservableCollection<Guitar> availableGuitars = new ObservableCollection<Guitar>();
+        List<Guitar> availableGuitars = new List<Guitar>();
 
         public MainWindow()
         {
@@ -38,7 +38,6 @@ namespace CA3_s00220273
                         select g.StringSize;
 
             dropdownStringSize.ItemsSource = query.ToList().Distinct();
-            //listBoxAvailable.ItemsSource = availableGuitars;
         }
 
 
@@ -230,57 +229,36 @@ namespace CA3_s00220273
         //click event handler method to query the database for available guitars to book in selected date range
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
         {
-            //var query = from g in db.Guitars
-            //            select g.Brand + " " + g.Model;
-
-            //listBoxAvailable.ItemsSource = query.ToList();
-
-
-            //var query = from g in db.Guitars
-            //            where g.StringSize.Equals(selectedStringSize)
-            //            select new
-            //            {
-            //                g.Brand,
-            //                g.Model,
-            //                g.StringSize
-            //            };
-
             //storing input values
             string selectedStringSize = dropdownStringSize.SelectedItem.ToString();
             DateTime? startDate = datePickerStart.SelectedDate;
             DateTime? endDate = datePickerEnd.SelectedDate;
 
-            //querying the database
-            var query = from b in db.Bookings
+            //first query to retrieve all guitar ids from selected string size     
+            var selectedSizeGuitarIds = from g in db.Guitars
+                               where g.StringSize.Equals(selectedStringSize)
+                               select g.Id;
+
+            //second query to retrieve all guitar ids that are already booked for that date range
+            var bookedGuitarIds = from b in db.Bookings
                         where b.Guitar.StringSize.Equals(selectedStringSize)
-                        && (startDate > b.EndDate || startDate < b.StartDate)
-                        && (endDate > b.EndDate || endDate < b.StartDate)
+                        && (startDate >= b.StartDate || startDate <= b.EndDate)
+                        || (endDate >= b.StartDate || endDate <= b.EndDate)
+                        select b.GuitarId;
 
-                        select new
-                        {
-                            b.Guitar.Brand,
-                            b.Guitar.Model,
-                            b.Guitar.StringSize
-                        };
+            //the difference between both previous lists will be the available guitars
+            //we achieve this through the IQueryable interface and its except method
+            //reference https://stackoverflow.com/questions/3944803/use-linq-to-get-items-in-one-list-that-are-not-in-another-list
             
-            listBoxAvailable.ItemsSource = query.ToList();
+            IQueryable<int> availableGuitarIds = selectedSizeGuitarIds.Except<int>(bookedGuitarIds);
 
-            //select new Guitar
-            //            {
-            //                Id = b.GuitarId,
-            //                Brand = b.Guitar.Brand,
-            //                Model = b.Guitar.Model,
-            //                StringSize = b.Guitar.StringSize
-            //            };
+            //third and last query to get the guitar objects that match the available guitar ids
+            var availableGuitars = from g in db.Guitars
+                                   where availableGuitarIds.Contains(g.Id)
+                                   select g;
 
-
-            ////updating listbox with available guitars        
-            //listBoxAvailable.ItemsSource = availableGuitars;
-
-            //foreach (Guitar guitarObj in query)
-            //{
-            //    availableGuitars.Add(guitarObj);
-            //}
+            //updating the available guitars listbox content
+            listBoxAvailable.ItemsSource = availableGuitars.ToList();
 
         }
 
@@ -295,17 +273,26 @@ namespace CA3_s00220273
 
             Guitar selectedGuitar = listBoxAvailable.SelectedItem as Guitar;
 
+            if (selectedGuitar != null)
+            {
+                textblockSelectedGuitar.Text = "Selected guitar: " + selectedGuitar.ToString();
+                textblockSelectedGuitar.Visibility = Visibility.Visible;
+            }
         }
 
 
         //make the booking if selected guitar is available at that date
         private void buttonBook_Click(object sender, RoutedEventArgs e)
         {
+            //getting selected element from listbox and casting it as a guitar object
             Guitar selectedGuitar = listBoxAvailable.SelectedItem as Guitar;
+
+            //getting information from user inputs
             string selectedStringSize = dropdownStringSize.SelectedItem.ToString();
             DateTime startDate = (DateTime)datePickerStart.SelectedDate;
             DateTime endDate = (DateTime)datePickerEnd.SelectedDate;
 
+            //creating a new booking object with collected information
             Booking b = new Booking()
             {
                 StartDate = startDate,
@@ -313,6 +300,7 @@ namespace CA3_s00220273
                 GuitarId = selectedGuitar.Id
             };
 
+            //adding the booking object to the database and saving changes
             db.Bookings.Add(b);
             db.SaveChanges();
         }

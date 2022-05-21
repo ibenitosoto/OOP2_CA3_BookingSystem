@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CA3_s00220273"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="600" Width="800"
+        ResizeMode="CanResizeWithGrip"
         Loaded="Window_Loaded"
         >
 
@@ -13,7 +14,7 @@
         <TabItem Header="Main" Width="70">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
@@ -27,9 +28,12 @@
                 <TextBlock HorizontalAlignment="Left" Margin="30,105,0,0" TextWrapping="Wrap" Text="StartDate" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="30,157,0,0" TextWrapping="Wrap" Text="EndDate" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="30,53,0,0" TextWrapping="Wrap" Text="String Size" VerticalAlignment="Top"/>
-                <Button x:Name="buttonBook" Grid.Column="1" Content="Book" Margin="225,321,0,0" Click="buttonBook_Click" IsEnabled="False" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79"/>
-                <Image x:Name="imageSelectedGuitar" Grid.Column="1" Height="220" Margin="0,0,125,162" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="272"/>
+                <Button x:Name="buttonBook" Grid.Column="1" Content="Book" Margin="0,0,0,30" Click="buttonBook_Click" IsEnabled="False" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="79"/>
+                <Image x:Name="imageSelectedGuitar" Grid.Column="1" Height="341" Margin="0,0,61,109" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="336"/>
                 <TextBlock x:Name="textblockDateError" HorizontalAlignment="Center" Margin="0,246,0,0" TextWrapping="Wrap" Text="Start date cannot be later than end date" VerticalAlignment="Top" Height="15" Width="205" FontSize="10" Foreground="#FFD21B1B" Visibility="Hidden"/>
+                <TextBlock x:Name="textblockTitle" Grid.Column="1" HorizontalAlignment="Center" Margin="0,23,0,0" TextWrapping="Wrap" Text="Rock N Roll Guitar Rentals" VerticalAlignment="Top" FontSize="24" FontFamily="Stencil"/>
+                <TextBlock x:Name="textblockWelcome" Grid.Column="1" HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" Text="Welcome to Rock N Roll Guitar Rentals. Fill required information and select an available guitar in order to make a booking" VerticalAlignment="Top" TextAlignment="Center"/>
+                <TextBlock x:Name="textblockSelectedGuitar" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,67" TextWrapping="Wrap" Text="TextBlock" FontSize="14" Visibility="Hidden" Height="19" VerticalAlignment="Bottom"/>
 
             </Grid>
         </TabItem>
