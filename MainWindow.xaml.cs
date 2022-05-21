@@ -32,12 +32,11 @@ namespace CA3_s00220273
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
-
             var query = from g in db.Guitars
                         select g.StringSize;
 
             dropdownStringSize.ItemsSource = query.ToList().Distinct();
+            textblockSelectedGuitar.Visibility = Visibility.Hidden;
         }
 
 
@@ -239,6 +238,8 @@ namespace CA3_s00220273
                                where g.StringSize.Equals(selectedStringSize)
                                select g.Id;
 
+            List<int> selectedSizeGuitarIdsList = selectedSizeGuitarIds.ToList();
+
             //second query to retrieve all guitar ids that are already booked for that date range
             var bookedGuitarIds = from b in db.Bookings
                         where b.Guitar.StringSize.Equals(selectedStringSize)
@@ -246,18 +247,27 @@ namespace CA3_s00220273
                         || (endDate >= b.StartDate || endDate <= b.EndDate)
                         select b.GuitarId;
 
+
+            List<int> bookedGuitarIdsList = bookedGuitarIds.ToList();
+
             //the difference between both previous lists will be the available guitars
             //we achieve this through the IQueryable interface and its except method
             //reference https://stackoverflow.com/questions/3944803/use-linq-to-get-items-in-one-list-that-are-not-in-another-list
             
             IQueryable<int> availableGuitarIds = selectedSizeGuitarIds.Except<int>(bookedGuitarIds);
-            
+
+            List<int> availableguitarIdsList = availableGuitarIds.ToList();
+
+
             //third and last query to get the guitar objects that match the available guitar ids
             var availableGuitars = from g in db.Guitars
                                    where availableGuitarIds.Contains(g.Id)
                                    select g;
 
             //updating the available guitars listbox content
+            List<Guitar> availableGuitarsList = availableGuitars.ToList();
+
+
             listBoxAvailable.ItemsSource = availableGuitars.ToList();
 
         }
@@ -277,6 +287,7 @@ namespace CA3_s00220273
             {
                 textblockSelectedGuitar.Text = "Selected guitar: " + selectedGuitar.ToString();
                 textblockSelectedGuitar.Visibility = Visibility.Visible;
+                DisplayGuitarImage(selectedGuitar);
             }
         }
 
@@ -308,7 +319,58 @@ namespace CA3_s00220273
         }
 
 
+        private void DisplayGuitarImage(Guitar guitar)
+        {
+            if (guitar.Brand == "Fender" && guitar.Model == "Stratocaster")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\fender_stratocaster.jpg", UriKind.Relative));
+            }
 
+            else if (guitar.Brand == "Fender" && guitar.Model == "Telecaster")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\fender_stratocaster.jpg", UriKind.Relative));
+            }
+
+            else if (guitar.Brand == "Gibson" && guitar.Model == "LesPaul")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\gibson_lespaul.jpg", UriKind.Relative));
+            }
+
+            else if (guitar.Brand == "Gibson" && guitar.Model == "SG")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\gibson_sg.jpg", UriKind.Relative));
+            }
+
+            else if (guitar.Brand == "Gibson" && guitar.Model == "ES335")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\gibson_es335.jpg", UriKind.Relative));
+            }
+
+            else if (guitar.Brand == "Yamaha" && guitar.Model == "Pacifica")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\yamaha_pacifica.jpg", UriKind.Relative));
+            }
+            
+            else if (guitar.Brand == "Epiphone" && guitar.Model == "Custom")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\epiphone_custom.jpg", UriKind.Relative));
+            }
+
+            else if (guitar.Brand == "ESP" && guitar.Model == "Snakebyte")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\esp_snakebyte.jpg", UriKind.Relative));
+            }
+
+            else if (guitar.Brand == "PRS" && guitar.Model == "SE")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\prs_se.jpg", UriKind.Relative));
+            }
+
+            else if (guitar.Brand == "Ibanez" && guitar.Model == "RG370")
+            {
+                imageSelectedGuitar.Source = new BitmapImage(new Uri("\\images\\ibanez_RG370.jpg", UriKind.Relative));
+            }
+        }
 
 
 

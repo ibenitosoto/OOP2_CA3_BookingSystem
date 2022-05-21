@@ -168,6 +168,16 @@
       <DependentUpon>GuitarsAndBookingsModel.edmx</DependentUpon>
       <LastGenOutput>GuitarsAndBookingsModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\epiphone_custom.jpg" />
+    <Resource Include="images\esp_snakebyte.jpg" />
+    <Resource Include="images\fender_stratocaster.jpg" />
+    <Resource Include="images\fender_telecaster.jpg" />
+    <Resource Include="images\gibson_es335.jpg" />
+    <Resource Include="images\gibson_lespaul.jpg" />
+    <Resource Include="images\gibson_sg.jpg" />
+    <Resource Include="images\ibanez_RG370.jpg" />
+    <Resource Include="images\prs_se.jpg" />
+    <Resource Include="images\yamaha_pacifica.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
