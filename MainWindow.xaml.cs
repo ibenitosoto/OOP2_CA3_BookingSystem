@@ -251,7 +251,7 @@ namespace CA3_s00220273
             //reference https://stackoverflow.com/questions/3944803/use-linq-to-get-items-in-one-list-that-are-not-in-another-list
             
             IQueryable<int> availableGuitarIds = selectedSizeGuitarIds.Except<int>(bookedGuitarIds);
-
+            //
             //third and last query to get the guitar objects that match the available guitar ids
             var availableGuitars = from g in db.Guitars
                                    where availableGuitarIds.Contains(g.Id)
